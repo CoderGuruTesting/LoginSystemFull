@@ -2,13 +2,19 @@ if (JSON.parse(localStorage.getItem("sign"))) {
     window.location.href = "home.html"
 }
 
-if (localStorage.getItem("users") == null) {
-    var users = [];
+// if (localStorage.getItem("users") == null) {
+//     var users = [];
 
-    localStorage.setItem("users", JSON.stringify(users));
-} else {
-    var users = JSON.parse(localStorage.getItem("users"));
-}
+//     localStorage.setItem("users", JSON.stringify(users));
+// } else {
+//     var users = JSON.parse(localStorage.getItem("users"));
+// }
+
+var usersRef = firebase.database().ref('users');
+usersRef.on('value', (snapshot) => {
+    const data = snapshot.val();
+    console.log(data);
+});
 
 var cont;
 
